@@ -1,0 +1,202 @@
+/* ==========================================================================
+   RSP Staffing — Recruitment Staffing Professional
+   Humanized Editorial Daylight Design System + Glassmorphism + Scroll Motion
+   ========================================================================== */
+
+:root {
+  --bg-alabaster: #FAF8F5;
+  --bg-sage: #F1F6F4;
+  --bg-cream: #F5F2EB;
+  --ink-navy: #0F293A;
+  --ink-slate: #475569;
+  --ink-muted: #64748B;
+  --brand-petrol: #084C5E;
+  --brand-petrol-dark: #053543;
+  --brand-emerald: #139A5E;
+  --brand-emerald-light: #E6F6EE;
+  --accent-coral: #E85D44;
+  --accent-amber: #F59E0B;
+  --accent-cobalt: #0284C7;
+  --accent-violet: #7C3AED;
+  --glass-bg: rgba(255, 255, 255, 0.80);
+  --glass-border: rgba(8, 76, 94, 0.11);
+  --shadow-soft: 0 20px 50px -12px rgba(8, 76, 94, 0.08), 0 4px 16px -2px rgba(15, 41, 58, 0.04);
+  --shadow-hover: 0 28px 60px -12px rgba(8, 76, 94, 0.15), 0 8px 24px -4px rgba(19, 154, 94, 0.10);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-alabaster);
+  color: var(--ink-navy);
+  overflow-x: hidden;
+  selection-background-color: #139A5E;
+  selection-color: #ffffff;
+}
+
+.font-serif-editorial {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+/* Ambient Sunlit Mesh Backdrop */
+.daylight-canvas {
+  background-color: var(--bg-alabaster);
+  background-image:
+    radial-gradient(at 10% 10%, rgba(19, 154, 94, 0.09) 0px, transparent 48%),
+    radial-gradient(at 88% 12%, rgba(2, 132, 199, 0.08) 0px, transparent 45%),
+    radial-gradient(at 52% 48%, rgba(245, 158, 11, 0.06) 0px, transparent 52%),
+    radial-gradient(at 85% 82%, rgba(232, 93, 68, 0.07) 0px, transparent 48%);
+}
+
+.dot-pattern {
+  background-size: 30px 30px;
+  background-image: radial-gradient(circle, rgba(8, 76, 94, 0.08) 1px, transparent 1px);
+}
+
+/* Frosted Daylight Glassmorphic Surfaces */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(8, 76, 94, 0.10);
+  box-shadow: 0 12px 36px -8px rgba(8, 76, 94, 0.08);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(19, 154, 94, 0.32);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Interactive Cursor-Tracked Spotlight Card */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(19, 154, 94, 0.08),
+    rgba(8, 76, 94, 0.03) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #084C5E 0%, #139A5E 55%, #E85D44 100%);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.08s linear;
+}
+
+/* Scroll Reveal Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(4px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* Gentle Floating Keyframes */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 7.5s ease-in-out 2s infinite;
+}
+
+/* Form Input Styling */
+.rsp-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid rgba(8, 76, 94, 0.15);
+  color: var(--ink-navy);
+  border-radius: 0.875rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.925rem;
+  transition: all 0.25s ease;
+}
+
+.rsp-input:focus {
+  outline: none;
+  background: #FFFFFF;
+  border-color: var(--brand-emerald);
+  box-shadow: 0 0 0 4px rgba(19, 154, 94, 0.12);
+}
+
+.rsp-input::placeholder {
+  color: #94A3B8;
+}
+
+/* Navigation Pill Active State */
+.nav-pill.active {
+  background: rgba(8, 76, 94, 0.08);
+  color: #084C5E;
+  font-weight: 700;
+}
+
+/* Brand Logo Sizing */
+.brand-logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo-img:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 640px) {
+  .brand-logo-img {
+    height: 42px;
+  }
+}
